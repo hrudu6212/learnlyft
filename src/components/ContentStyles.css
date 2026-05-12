@@ -1,0 +1,317 @@
+/* ===== Shared Content Component Styles ===== */
+
+/* Section Card */
+.content-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.content-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(139,92,246,0.2);
+}
+
+.content-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.content-card__number {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.content-card__title {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.content-card__body {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Highlight box */
+.highlight-box {
+  background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(59,130,246,0.08));
+  border: 1px solid rgba(139,92,246,0.2);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-top: 12px;
+}
+
+.highlight-box__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-purple);
+  margin-bottom: 6px;
+}
+
+.highlight-box__text {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+/* Intro card */
+.intro-card {
+  background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(34,211,238,0.05));
+  border: 1px solid rgba(139,92,246,0.15);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* Summary card */
+.summary-card {
+  background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(34,211,238,0.05));
+  border: 1px solid rgba(16,185,129,0.2);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.summary-card__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-emerald);
+  margin-bottom: 8px;
+}
+
+.summary-card__text {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Badge */
+.importance-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.importance-badge--high { background: rgba(244,63,94,0.15); color: var(--accent-rose); border: 1px solid rgba(244,63,94,0.3); }
+.importance-badge--medium { background: rgba(245,158,11,0.15); color: var(--accent-amber); border: 1px solid rgba(245,158,11,0.3); }
+.importance-badge--low { background: rgba(16,185,129,0.15); color: var(--accent-emerald); border: 1px solid rgba(16,185,129,0.3); }
+
+/* Stagger animation */
+.stagger-item {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* ========================================================
+   DEPTH MODE — Enhanced card & content styles
+   ======================================================== */
+
+/* Glowing cards in depth mode */
+.dashboard--depth .content-card {
+  background: rgba(15,5,45,0.6);
+  border-color: rgba(139,92,246,0.2);
+  box-shadow: 0 0 20px rgba(139,92,246,0.06), inset 0 1px 0 rgba(255,255,255,0.04);
+  backdrop-filter: blur(8px);
+}
+.dashboard--depth .content-card:hover {
+  border-color: rgba(34,211,238,0.3);
+  box-shadow: 0 0 30px rgba(34,211,238,0.1), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* Gradient left border accent on cards */
+.dashboard--depth .content-card {
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(to bottom, #c084fc, #22d3ee) 1;
+  border-image-slice: 0 0 0 1;
+}
+
+/* Enhanced intro card */
+.dashboard--depth .intro-card {
+  background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(34,211,238,0.08));
+  border-color: rgba(34,211,238,0.2);
+  box-shadow: 0 0 24px rgba(34,211,238,0.06);
+}
+
+/* Enhanced summary card */
+.dashboard--depth .summary-card {
+  background: linear-gradient(135deg, rgba(34,211,238,0.1), rgba(139,92,246,0.06));
+  border-color: rgba(34,211,238,0.25);
+  box-shadow: 0 0 20px rgba(34,211,238,0.06);
+}
+
+/* Enhanced highlight box */
+.dashboard--depth .highlight-box {
+  background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(139,92,246,0.1));
+  border-color: rgba(34,211,238,0.25);
+}
+
+/* Enhanced number circles */
+.dashboard--depth .content-card__number {
+  background: linear-gradient(135deg, #c084fc, #22d3ee);
+  box-shadow: 0 0 12px rgba(34,211,238,0.3);
+}
+
+/* Section title in depth mode */
+.dashboard--depth .section-title {
+  background: linear-gradient(135deg, #c084fc, #818cf8, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 1.7rem;
+}
+
+/* ===== Depth Mode Meta Bar ===== */
+.depth-meta-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.depth-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  background: rgba(34,211,238,0.06);
+  border: 1px solid rgba(34,211,238,0.15);
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+}
+.depth-meta-item span:first-child { opacity: 0.7; }
+.depth-meta-item strong { color: var(--text-primary); font-weight: 600; }
+
+/* ===== Table of Contents ===== */
+.depth-toc {
+  padding: 20px 24px;
+  border-radius: var(--radius-lg);
+  background: rgba(139,92,246,0.06);
+  border: 1px solid rgba(139,92,246,0.15);
+  margin-bottom: 24px;
+}
+.depth-toc__title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-purple);
+  margin-bottom: 12px;
+}
+.depth-toc__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.depth-toc__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  cursor: default;
+  transition: color 0.2s;
+}
+.depth-toc__item:hover { color: var(--accent-cyan); }
+.depth-toc__num {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(139,92,246,0.15);
+  color: var(--accent-purple);
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ===== Depth Difficulty Badge ===== */
+.difficulty-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.difficulty-badge--easy { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+.difficulty-badge--medium { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.25); }
+.difficulty-badge--hard { background: rgba(244,63,94,0.12); color: #fb7185; border: 1px solid rgba(244,63,94,0.25); }
+.difficulty-badge--expert { background: rgba(139,92,246,0.12); color: #c084fc; border: 1px solid rgba(139,92,246,0.3); }
+
+/* ===== Depth Progress Bar ===== */
+.depth-progress {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.depth-progress__fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #c084fc, #22d3ee);
+  transition: width 0.5s ease;
+}
+
+/* ===== Depth Importance Meter ===== */
+.importance-meter {
+  display: flex;
+  gap: 2px;
+  margin-top: 8px;
+}
+.importance-meter__bar {
+  height: 4px;
+  border-radius: 2px;
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+}
+.importance-meter__bar--filled { background: var(--accent-cyan); }
+.importance-meter__bar--filled.high { background: var(--accent-rose); }
+.importance-meter__bar--filled.medium { background: var(--accent-amber); }
+.importance-meter__bar--filled.low { background: var(--accent-emerald); }

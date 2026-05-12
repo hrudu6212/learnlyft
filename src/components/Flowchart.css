@@ -1,0 +1,107 @@
+.flowchart {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 16px 0;
+}
+
+.flow-node {
+  position: relative;
+  padding-left: 40px;
+}
+
+.flow-connector {
+  position: absolute;
+  left: 55px;
+  top: 70px;
+  bottom: -10px;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(139,92,246,0.4), rgba(59,130,246,0.2));
+}
+
+.flow-node__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid;
+  margin-bottom: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.flow-node__card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.flow-node__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.flow-node__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.flow-node__step {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.flow-node__label {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.flow-node__desc {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.flow-node__type {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid;
+  white-space: nowrap;
+  align-self: center;
+}
+
+@media (max-width: 600px) {
+  .flow-node { padding-left: 8px; }
+  .flow-connector { left: 23px; }
+  .flow-node__type { display: none; }
+}
+
+/* Depth mode */
+.flow-connector--depth {
+  width: 3px;
+  background: linear-gradient(to bottom, rgba(192,132,252,0.5), rgba(34,211,238,0.4));
+  box-shadow: 0 0 8px rgba(139,92,246,0.2);
+}
+
+.flow-node__card--depth {
+  backdrop-filter: blur(8px);
+  padding: 24px;
+}
+
+.flow-node__card--depth:hover {
+  transform: translateX(6px) scale(1.01);
+}
