@@ -174,6 +174,29 @@
   font-size: 0.75rem;
 }
 
+/* Export tab — stands out with a gradient pill */
+.dash-tab--export {
+  position: relative;
+  overflow: hidden;
+  margin-left: auto;
+}
+.dash-tab--export::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(139,92,246,.12), rgba(34,211,238,.08));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.dash-tab--export:hover::before { opacity: 1; }
+.dash-tab--export.dash-tab--active {
+  background: linear-gradient(135deg, rgba(139,92,246,.18), rgba(34,211,238,.12));
+  border-color: rgba(34,211,238,.35);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 18px rgba(34,211,238,.1);
+}
+
 /* ===== Content ===== */
 .dash-content {
   flex: 1;
@@ -223,12 +246,24 @@
   white-space: nowrap;
 }
 
+/* Branding footer strip */
+.dash-footer-brand {
+  text-align: center;
+  padding: 16px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(10,10,31,0.5);
+}
+.dash-footer-brand strong { color: var(--accent-purple); }
+
 @media (max-width: 700px) {
   .dash-header { padding: 12px 16px; }
   .dash-tabs { padding: 8px 16px; }
   .dash-content { padding: 16px; }
   .dash-header__regen span { display: none; }
   .dash-tab__label { display: none; }
+  .dash-tab--export .dash-tab__label { display: inline; }
 }
 
 /* ========================================================
@@ -297,3 +332,4 @@
 .dashboard--depth .dash-content {
   max-width: 1040px;
 }
+
