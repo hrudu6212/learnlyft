@@ -4,6 +4,7 @@ import Flowchart from './Flowchart.jsx';
 import Report from './Report.jsx';
 import KeyPoints from './KeyPoints.jsx';
 import Quiz from './Quiz.jsx';
+import ExportPDF from './ExportPDF.jsx';
 import './Dashboard.css';
 
 const TABS = [
@@ -12,6 +13,7 @@ const TABS = [
   { key: 'report',    icon: '📊', label: 'Report' },
   { key: 'keypoints', icon: '🔑', label: 'Key Points' },
   { key: 'quiz',      icon: '❓', label: 'Quiz' },
+  { key: 'export',    icon: '⬇️', label: 'Export PDF' },
 ];
 
 const CONTENT_MAP = {
@@ -27,8 +29,9 @@ export default function Dashboard({ topic, depthMode, user, results, activeTab, 
   const totalCount = Object.keys(results).length;
   const progressPct = Math.round((completedCount / totalCount) * 100);
 
-  const currentResult = results[activeTab];
-  const ContentComponent = CONTENT_MAP[activeTab];
+  const isExportTab = activeTab === 'export';
+  const currentResult = !isExportTab ? results[activeTab] : null;
+  const ContentComponent = !isExportTab ? CONTENT_MAP[activeTab] : null;
 
   return (
     <div className={`dashboard animate-fade-in ${depthMode ? 'dashboard--depth' : ''}`}>
@@ -73,20 +76,21 @@ export default function Dashboard({ topic, depthMode, user, results, activeTab, 
       {/* Tab Bar */}
       <nav className="dash-tabs">
         {TABS.map(tab => {
-          const r = results[tab.key];
+          const isExport = tab.key === 'export';
+          const r = !isExport ? results[tab.key] : null;
           const isActive = activeTab === tab.key;
           return (
             <button
               key={tab.key}
               id={`tab-${tab.key}`}
-              className={`dash-tab ${isActive ? 'dash-tab--active' : ''} ${r.error ? 'dash-tab--error' : ''}`}
+              className={`dash-tab ${isActive ? 'dash-tab--active' : ''} ${r?.error ? 'dash-tab--error' : ''} ${isExport ? 'dash-tab--export' : ''}`}
               onClick={() => onTabChange(tab.key)}
             >
               <span className="dash-tab__icon">{tab.icon}</span>
               <span className="dash-tab__label">{tab.label}</span>
-              {r.loading && <span className="dash-tab__status dash-tab__status--loading" />}
-              {!r.loading && r.data && <span className="dash-tab__status dash-tab__status--done">✓</span>}
-              {r.error && <span className="dash-tab__status dash-tab__status--error">!</span>}
+              {!isExport && r?.loading && <span className="dash-tab__status dash-tab__status--loading" />}
+              {!isExport && !r?.loading && r?.data && <span className="dash-tab__status dash-tab__status--done">✓</span>}
+              {!isExport && r?.error && <span className="dash-tab__status dash-tab__status--error">!</span>}
             </button>
           );
         })}
@@ -94,10 +98,18 @@ export default function Dashboard({ topic, depthMode, user, results, activeTab, 
 
       {/* Content */}
       <main className="dash-content">
-        {currentResult.loading && (
+        {/* Export tab */}
+        {isExportTab && (
+          <div className="dash-content__inner animate-fade-in-up">
+            <ExportPDF topic={topic} depthMode={depthMode} results={results} />
+          </div>
+        )}
+
+        {/* Normal content tabs */}
+        {!isExportTab && currentResult?.loading && (
           <Loader section={TABS.find(t => t.key === activeTab)?.label} />
         )}
-        {currentResult.error && (
+        {!isExportTab && currentResult?.error && (
           <div className="dash-error">
             <div className="dash-error__icon">⚠️</div>
             <h3>Generation Failed</h3>
@@ -105,12 +117,18 @@ export default function Dashboard({ topic, depthMode, user, results, activeTab, 
             <button className="dash-error__retry" onClick={onRegenerate}>Try Again</button>
           </div>
         )}
-        {!currentResult.loading && currentResult.data && (
+        {!isExportTab && !currentResult?.loading && currentResult?.data && (
           <div className="dash-content__inner animate-fade-in-up">
             <ContentComponent data={currentResult.data} depthMode={depthMode} />
           </div>
         )}
       </main>
+
+      {/* Footer branding */}
+      <div className="dash-footer-brand">
+        Made with ❤️ by <strong>CoreStar</strong> · Owned by <strong>Hruddayansh</strong>
+      </div>
     </div>
   );
 }
+
