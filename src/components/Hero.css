@@ -230,9 +230,18 @@
   margin-top: auto;
   padding-top: 20px;
   color: var(--text-muted);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.hero__branding strong { color: var(--text-secondary); }
+.hero__branding strong {
+  background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
 
 @media (max-width: 600px) {
   .hero__title { font-size: 1.6rem; }
