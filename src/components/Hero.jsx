@@ -178,9 +178,10 @@ export default function Hero({ user, onGenerate, onLogout }) {
 
         {/* Footer branding */}
         <div className="hero__branding animate-fade-in" style={{ animationDelay: '.35s' }}>
-          Made by <strong>CoreStar</strong> · Owned by <strong>Hruddayansh</strong>
+          ⭐ Made by <strong>CoreStar</strong> · Owned by <strong>Hruddayansh</strong>
         </div>
       </div>
     </div>
   );
 }
+
