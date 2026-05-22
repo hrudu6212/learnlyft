@@ -140,6 +140,20 @@ export default function Landing({ onGetStarted, onLogin, onSignup }) {
         </div>
       </section>
 
+      {/* CoreStar Branding Banner */}
+      <section className="land-corestar">
+        <div className="land-corestar__inner">
+          <div className="land-corestar__star">⭐</div>
+          <div className="land-corestar__text">
+            <div className="land-corestar__made">Crafted with ❤️ by</div>
+            <div className="land-corestar__name">
+              <span>CoreStar</span> &nbsp;·&nbsp; Owned by <span>Hruddayansh</span>
+            </div>
+          </div>
+          <div className="land-corestar__pill">LearnLyft © 2026</div>
+        </div>
+      </section>
+
       {/* About & Footer */}
       <footer className="land-footer" id="about">
         <div className="land-footer__top">
