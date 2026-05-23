@@ -1,4 +1,4 @@
-const API_KEY = 'AIzaSyDo2Ccx9VwcLvRTbUj69Vu_cElm5uV9YFg';
+const API_KEY = 'AIzaSyD2eRta1OtjSl-EurijSTXLLasF4tPo8pM';
 const MODEL = 'gemini-2.5-flash-lite';
 const BASE_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 
