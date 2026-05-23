@@ -1,6 +1,6 @@
 const API_KEY = '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';
 const MODEL = 'arcee-ai/trinity-large-thinking:free';
-const BASE_URL = `https://openrouter.ai/api/v1/chat/completions/${MODEL}:generateContent`;
+const BASE_URL = `https://openrouter.ai/api/v1/chat/completions`;
 
 function parseJSON(text) {
   let cleaned = (text || '').trim();
@@ -11,32 +11,35 @@ function parseJSON(text) {
 async function callGemini(prompt, options = {}) {
   const { jsonMode = true, pdfBase64 = null } = options;
 
-  const parts = [];
+  const content = [];
+  content.push({ type: 'text', text: prompt });
+
   if (pdfBase64) {
-    parts.push({
-      inline_data: {
-        mime_type: 'application/pdf',
-        data: pdfBase64,
-      },
+    content.push({
+      type: 'image_url',
+      image_url: {
+        url: `data:application/pdf;base64,${pdfBase64}`
+      }
     });
   }
-  parts.push({ text: prompt });
 
   const body = {
-    contents: [{ parts }],
-    generationConfig: {
-      temperature: 0.7,
-      maxOutputTokens: 16384,
-    },
+    model: MODEL,
+    messages: [{ role: 'user', content }],
+    temperature: 0.7,
   };
+
   if (jsonMode) {
-    body.generationConfig.responseMimeType = 'application/json';
+    body.response_format = { type: 'json_object' };
   }
 
-  const res = await fetch(`${BASE_URL}?key=${API_KEY}`, {
+  const res = await fetch(BASE_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
+    headers: {
+      'Authorization': `Bearer ${API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ ...body, reasoning: { enabled: true } }),
   });
 
   if (!res.ok) {
@@ -45,7 +48,7 @@ async function callGemini(prompt, options = {}) {
   }
 
   const data = await res.json();
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  const text = data.choices?.[0]?.message?.content || '';
   return jsonMode ? parseJSON(text) : text;
 }
 
