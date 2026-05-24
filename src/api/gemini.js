@@ -38,8 +38,6 @@ async function callGemini(prompt, options = {}) {
     headers: {
       'Authorization': `Bearer ${API_KEY}`,
       'Content-Type': 'application/json',
-      'HTTP-Referer': 'https://localhost:3000',
-      'X-Title': 'LearnLyft'
     },
     body: JSON.stringify({ ...body, reasoning: { enabled: true } }),
   });
