@@ -1,4 +1,4 @@
-const API_KEY = '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';
+const API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY;
 const MODEL = 'arcee-ai/trinity-large-thinking:free';
 const BASE_URL = `https://openrouter.ai/api/v1/chat/completions`;
 
